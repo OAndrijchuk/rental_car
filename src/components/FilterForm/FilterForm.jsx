@@ -23,11 +23,7 @@ import {
   mileageReformat,
 } from 'helpers/helpers_func';
 import { filterAllSelector } from 'redux/filteredAdverts/selectors';
-import {
-  setFilteredAdverts,
-  setMaxMileage,
-  setMinMileage,
-} from 'redux/filteredAdverts/filteredAdvertsSlice';
+import { setFilteredAdverts } from 'redux/filteredAdverts/filteredAdvertsSlice';
 
 const validationSchema = yup.object().shape({
   minMileage: yup
@@ -40,12 +36,11 @@ const validationSchema = yup.object().shape({
     .matches(/^[+]?\d+(,\d+)?$/, '*Invalid format!'),
 });
 
-//.moreThan(-1, 'Only possitive value')
+//.moreThan(-1, 'Only possitive value'), maxMileage, minMileage
 const FilterForm = ({ clearList, clearPage }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(advertsSelector);
-  const { carBrand, maxPrice, maxMileage, minMileage } =
-    useSelector(filterAllSelector);
+  const { carBrand, maxPrice } = useSelector(filterAllSelector);
 
   const handleSubmit = values => {
     const filteredParams = {
