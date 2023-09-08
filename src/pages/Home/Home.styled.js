@@ -44,13 +44,13 @@ export const HeroBtnStyled = styled(Link)`
   font-size: calc((1vh + 1vw) * 1.4);
   text-align: center;
   width: calc((1vh + 1vw) * 16);
-  background-color: #3470ff;
+  color: #3470ff;
   padding: 15px;
   font-weight: 500;
   text-decoration: underline;
-  transition: background-color 250ms ease;
+  transition: color 250ms ease;
   &:hover {
-    background-color: #0b44cd;
+    color: #0b44cd;
   }
   border-radius: 12px;
 `;

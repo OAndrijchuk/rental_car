@@ -16,16 +16,17 @@ export const ModalContainer = styled.div`
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 98vh;
+  max-height: 90vh;
   border-radius: 24px;
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    border-radius: 4px;
   }
   &::-webkit-scrollbar-track {
-    background: #3470ff;
+    background: #8a8a89;
   }
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #191266 0%, #0b44cd 100%);
+    background: lightgray;
 
     border-radius: 4px;
   }

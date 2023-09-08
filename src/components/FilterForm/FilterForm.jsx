@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
     .matches(/^[+]?\d+(,\d+)?$/, '*Invalid format!'),
 });
 
-//.moreThan(-1, 'Only possitive value'), maxMileage, minMileage
+//, maxMileage, minMileage
 const FilterForm = ({ clearList, clearPage }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(advertsSelector);
@@ -47,7 +47,6 @@ const FilterForm = ({ clearList, clearPage }) => {
       maxMileage: mileageReformat(values.maxMileage),
       minMileage: mileageReformat(values.minMileage),
     };
-    // console.log(mileageReformat(values.maxMileage));
 
     let filteredAdverts = [...adverts];
 
