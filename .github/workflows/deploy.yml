@@ -6,21 +6,15 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout :bellhop_bell:
+      - name: Checkout
         uses: actions/checkout@v2.3.1
-      - name: Install, lint, build :wrench:
+      - name: Install, lint, build
         run: |
           npm install
           npm run lint:js
           npm run build
-      - name: Deploy :rocket:
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
           folder: build
-
-
-
-
-
-
