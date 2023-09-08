@@ -6,7 +6,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout :bellhop_bell:
+      name: Build and deploy to GitHub Pages
         uses: actions/checkout@v2.3.1
       - name: Install, lint, build :wrench:
         run: |
