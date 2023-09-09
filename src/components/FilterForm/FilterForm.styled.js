@@ -7,7 +7,7 @@ export const SelectStyled = styled(Select)`
   position: relative;
   color: ${({ theme }) => theme.colors.colorText};
   z-index: 2;
-  font-family: 'Manrope-Medium';
+  font-family: 'Manrope', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -71,7 +71,7 @@ export const Lable = styled.label`
   align-items: center;
   transform: translateY(-100%);
   color: #8a8a89;
-  font-family: 'Manrope-Medium';
+  font-family: 'Manrope-Regular', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -79,6 +79,7 @@ export const Lable = styled.label`
 `;
 export const ErrMassage = styled(ErrorMessage)`
   position: absolute;
+  ily: 'Manrope-Regular', sans-serif;
   color: red;
   width: 150%;
   left: 24px;
@@ -107,7 +108,7 @@ export const FieldStyled = styled(Field)`
     display: block;
     position: absolute;
     color: ${({ theme }) => theme.colors.colorText};
-    font-family: 'Manrope-Medium';
+    font-family: 'Manrope', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;

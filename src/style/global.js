@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   color: #fff;
-  font-family: 'Manrope-SemiBold';
+  font-family: 'Manrope', sans-serif;
   font-size: 14px;
   font-style: normal;
   line-height: 1.43; /* 142.857% */

@@ -4,7 +4,7 @@ export const GlobalStyles = createGlobalStyle`
 
 body {
   margin: 0;
-  font-family: 'Montserrat-Regular', sans-serif;
+  font-family: 'Manrope-Regular', sans-serif;
   color: ${({ theme }) => theme.colors.colorText};
 }
 

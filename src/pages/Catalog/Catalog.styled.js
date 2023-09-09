@@ -24,7 +24,7 @@ export const LoadMoreBtn = styled.button`
   margin: 50px auto;
   color: ${({ theme }) => theme.colors.colorBtn};
   padding: 10px;
-  font-family: 'Manrope-Medium';
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

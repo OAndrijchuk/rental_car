@@ -22,7 +22,7 @@ export const Img = styled.img`
   max-height: 248px;
 `;
 export const DescText = styled.p`
-  font-family: 'Manrope-Regular';
+  ily: 'Manrope-Regular';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -31,7 +31,7 @@ export const DescText = styled.p`
   margin-bottom: 24px;
 `;
 export const BlockName = styled.p`
-  font-family: 'Manrope-Medium';
+  font-family: 'Manrope', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -43,7 +43,7 @@ export const RentalBlockName = styled(BlockName)`
 export const RentalCarBtn = styled.a`
   display: block;
   color: #fff;
-  font-family: 'Manrope-SemiBold';
+  font-family: 'Manrope', sans-serif;
   font-size: 14px;
   font-style: normal;
   line-height: 1.43; /* 142.857% */
@@ -90,7 +90,7 @@ export const RentalBlockInfo = styled.div`
   & span {
     display: flex;
     padding: 7px 14px;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Manrope', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

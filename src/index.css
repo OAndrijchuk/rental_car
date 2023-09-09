@@ -1,1 +1,29 @@
 @import-normalize; /* bring in normalize.css styles */
+
+body {
+  margin: 0;
+  font-family: 'Manrope-Regular', sans-serif;
+  /* color: ${({ theme }) => theme.colors.colorText}; */
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular'; /* 400 */
+  src: url(./fonts/Montserrat/Montserrat-Regular.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Montserrat-SemiBold'; /* 600 */
+  src: url(./fonts/Montserrat/Montserrat-SemiBold.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'Manrope-Regular'; /* 400 */
+  src: url(./fonts/Manrope/Manrope-Regular.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Manrope-Medium'; /* 500 */
+  src: url(./fonts/Manrope/Manrope-Medium.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Manrope-SemiBold'; /* 600 */
+  src: url(./fonts/Manrope/Manrope-SemiBold.ttf) format('ttf');
+}

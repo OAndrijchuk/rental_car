@@ -41,7 +41,7 @@ export const ImportentInfo = styled.div`
   justify-content: space-between;
   padding-right: 8px;
   color: ${({ theme }) => theme.colors.colorText};
-  font-family: 'Manrope-Medium';
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -56,7 +56,7 @@ export const Info = styled.div`
   gap: 4px;
   margin-top: 8px;
   color: rgba(18, 20, 23, 0.5);
-  font-family: 'Manrope-Regular';
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-style: normal;
   line-height: 1.5; /* 150% */
