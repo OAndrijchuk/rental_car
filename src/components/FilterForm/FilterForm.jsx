@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import {
   ErrMassage,
@@ -23,7 +23,14 @@ import {
   mileageReformat,
 } from 'helpers/helpers_func';
 import { filterAllSelector } from 'redux/filteredAdverts/selectors';
-import { setFilteredAdverts } from 'redux/filteredAdverts/filteredAdvertsSlice';
+import {
+  clearFilter,
+  setFilteredAdverts,
+  setIsFiltered,
+  setMaxMileage,
+  setMinMileage,
+} from 'redux/filteredAdverts/filteredAdvertsSlice';
+import { resetPagination } from 'redux/paginatonSlice/paginatonSlice';
 
 const validationSchema = yup.object().shape({
   minMileage: yup
@@ -36,12 +43,18 @@ const validationSchema = yup.object().shape({
     .matches(/^[+]?\d+(,\d+)?$/, '*Invalid format!'),
 });
 
-//, maxMileage, minMileage
-const FilterForm = ({ clearList, clearPage }) => {
+const FilterForm = ({ clearList }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(advertsSelector);
   const { carBrand, maxPrice } = useSelector(filterAllSelector);
 
+  useEffect(
+    () => () => {
+      dispatch(setMinMileage(0));
+      dispatch(setMaxMileage(0));
+    },
+    [dispatch]
+  );
   const handleSubmit = values => {
     const filteredParams = {
       maxMileage: mileageReformat(values.maxMileage),
@@ -49,7 +62,6 @@ const FilterForm = ({ clearList, clearPage }) => {
     };
 
     let filteredAdverts = [...adverts];
-
     if (carBrand) {
       filteredAdverts = filteredAdverts.filter(el => el.make === carBrand);
     }
@@ -62,7 +74,7 @@ const FilterForm = ({ clearList, clearPage }) => {
       let max = filteredParams.maxMileage;
       let min = filteredParams.minMileage;
       if (!max) {
-        max = Infinity;
+        max = 999999;
       }
       if (!min) {
         min = 0;
@@ -71,25 +83,16 @@ const FilterForm = ({ clearList, clearPage }) => {
         el => el.mileage <= max && el.mileage >= min
       );
     }
-    // if (maxMileage || minMileage) {
-    //   let max = maxMileage;
-    //   let min = minMileage;
-    //   if (!max) {
-    //     max = Infinity;
-    //   }
-    //   if (!min) {
-    //     min = 0;
-    //   }
-    //   filteredAdverts = filteredAdverts.filter(
-    //     el => el.mileage <= max && el.mileage >= min
-    //   );
-    // }
-    // if (!filteredAdverts) {
-    //   filteredAdverts = [];
-    // }
-    clearList([]);
-    clearPage(0);
-    dispatch(setFilteredAdverts(filteredAdverts));
+
+    dispatch(resetPagination());
+    if (carBrand || maxPrice || values.maxMileage || values.minMileage) {
+      clearList([]);
+      dispatch(setFilteredAdverts(filteredAdverts));
+      dispatch(setIsFiltered());
+    } else {
+      dispatch(clearFilter());
+      dispatch(resetPagination());
+    }
   };
 
   return (
@@ -115,10 +118,11 @@ const FilterForm = ({ clearList, clearPage }) => {
                 type="text"
                 id="minMileage"
                 name="minMileage"
-                // value={mileageFormat(minMileage)}
-                // onChange={e => dispatch(setMinMileage(mileageReformat(e.target.value)))}
                 value={mileageFormat(values.minMileage)}
-                onChange={event => mileageBlock(event, handleChange)}
+                onChange={event => {
+                  mileageBlock(event, handleChange);
+                  dispatch(setMinMileage(mileageReformat(event.target.value)));
+                }}
               />
 
               <ErrMassage component="p" name="minMileage" />
@@ -129,10 +133,11 @@ const FilterForm = ({ clearList, clearPage }) => {
                 type="text"
                 id="maxMileage"
                 name="maxMileage"
-                // value={mileageFormat(maxMileage)}
-                // onChange={e => dispatch(setMaxMileage(mileageReformat(e.target.value)))}
                 value={mileageFormat(values.maxMileage)}
-                onChange={event => mileageBlock(event, handleChange)}
+                onChange={event => {
+                  dispatch(setMaxMileage(mileageReformat(event.target.value)));
+                  mileageBlock(event, handleChange);
+                }}
               />
               <ErrMassage component="p" name="maxMileage" />
             </FildHelpCont>

@@ -3,41 +3,65 @@ import React, { useEffect, useState } from 'react';
 import { LoadMoreBtn, Ul } from './Catalog.styled';
 import { GlobalContainer } from 'style/global';
 import FilterForm from 'components/FilterForm/FilterForm';
-import { advertsSelector } from 'redux/adverts/selectors';
 import { filterAllSelector } from 'redux/filteredAdverts/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPage } from 'redux/paginatonSlice/operations';
+import {
+  incCurrentPage,
+  resetPagination,
+} from 'redux/paginatonSlice/paginatonSlice';
+import { clearFilter } from 'redux/filteredAdverts/filteredAdvertsSlice';
 
 function Catalog() {
-  const realAdverts = useSelector(advertsSelector);
+  const dispatch = useDispatch();
   const { isFiltered, filteredAdverts } = useSelector(filterAllSelector);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [advertsShow, setAdvertsShow] = useState([]);
   const [elemensCount] = useState(8);
+  const [advertsShow, setAdvertsShow] = useState([]);
+  const { currentPage, totalCards } = useSelector(state => state.pagination);
+  const alllAdverts = useSelector(state => state.pagination.paginationCards);
 
   useEffect(() => {
-    let adverts;
-    if (isFiltered) {
-      adverts = filteredAdverts;
-    } else {
-      adverts = realAdverts;
+    if (!isFiltered) {
+      dispatch(fetchPage(currentPage));
     }
-    setAdvertsShow(prev => [
-      ...prev,
-      ...adverts.slice(
-        currentPage * elemensCount,
-        currentPage * elemensCount + elemensCount
-      ),
-    ]);
-  }, [realAdverts, isFiltered, filteredAdverts, currentPage, elemensCount]);
+  }, [dispatch, currentPage, isFiltered]);
 
-  const onLoadMore = () => {
-    setCurrentPage(prev => prev + 1);
-  };
+  useEffect(() => {
+    if (isFiltered) {
+      console.log('filteredAdverts>>>', filteredAdverts);
+      setAdvertsShow(prev => [
+        ...prev,
+        ...filteredAdverts.slice(
+          (currentPage - 1) * elemensCount,
+          (currentPage - 1) * elemensCount + elemensCount
+        ),
+      ]);
+    } else {
+      setAdvertsShow(alllAdverts);
+    }
+  }, [
+    alllAdverts,
+    isFiltered,
+    filteredAdverts,
+    currentPage,
+    elemensCount,
+    setAdvertsShow,
+    dispatch,
+  ]);
+
+  useEffect(
+    () => () => {
+      setAdvertsShow([]);
+      dispatch(clearFilter());
+      dispatch(resetPagination());
+    },
+    [dispatch]
+  );
 
   return (
     <section>
       <GlobalContainer>
-        <FilterForm clearList={setAdvertsShow} clearPage={setCurrentPage} />
+        <FilterForm clearList={setAdvertsShow} />
         <Ul>
           {advertsShow.map(car => (
             <CarCard carInfo={car} key={car.id} />
@@ -45,8 +69,13 @@ function Catalog() {
         </Ul>
 
         {advertsShow.length !==
-          (isFiltered ? filteredAdverts.length : realAdverts.length) && (
-          <LoadMoreBtn type="button" onClick={onLoadMore}>
+          (isFiltered ? filteredAdverts.length : totalCards) && (
+          <LoadMoreBtn
+            type="button"
+            onClick={() => {
+              dispatch(incCurrentPage());
+            }}
+          >
             Load more
           </LoadMoreBtn>
         )}

@@ -4,7 +4,7 @@ import {
   PriceSelectStyled,
 } from 'components/FilterForm/FilterForm.styled';
 import { createPricesPoints, createSelectOptions } from 'helpers/helpers_func';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { advertsSelector } from 'redux/adverts/selectors';
 import { setMaxPrice } from 'redux/filteredAdverts/filteredAdvertsSlice';
@@ -14,6 +14,9 @@ const SelectMaxPrice = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(advertsSelector);
   const { maxPrice } = useSelector(filterAllSelector);
+
+  useEffect(() => () => dispatch(setMaxPrice(0)), [dispatch]);
+
   const values = {
     value: maxPrice,
     label: `To ${maxPrice === 0 ? '' : maxPrice} $`,

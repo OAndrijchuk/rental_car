@@ -4,7 +4,7 @@ import {
   Lable,
 } from 'components/FilterForm/FilterForm.styled';
 import { createSelectOptions, makeUniq } from 'helpers/helpers_func';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { advertsSelector } from 'redux/adverts/selectors';
 import { setCarBrand } from 'redux/filteredAdverts/filteredAdvertsSlice';
@@ -14,6 +14,7 @@ const SelectBrand = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(advertsSelector);
   const { carBrand } = useSelector(filterAllSelector);
+  useEffect(() => () => dispatch(setCarBrand('')), [dispatch]);
 
   const values = {
     value: carBrand,

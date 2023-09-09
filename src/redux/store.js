@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { advertsReducer } from './adverts/advertsSlice';
 import { filterReducer } from './filteredAdverts/filteredAdvertsSlice';
 import { carDetailsReducer } from './carDetails/carDetailsSlice';
+import { paginationReducer } from './paginatonSlice/paginatonSlice';
 
 const persistAdverts = {
   key: 'faivoriteAdverts',
@@ -26,15 +27,15 @@ export const store = configureStore({
     adverts: persistReducer(persistAdverts, advertsReducer),
     filter: filterReducer,
     carDetails: carDetailsReducer,
+    pagination: paginationReducer,
   },
-  // reducer: persistReducer(persistAdverts, advertsReducer),
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  // devTools: process.env.NODE_ENV !== 'production',
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export let persistor = persistStore(store);

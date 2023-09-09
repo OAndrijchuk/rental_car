@@ -26,7 +26,8 @@ export const mileageFormat = num => {
     return newArr.join('').replaceAll(',', '');
   }
 };
-export const mileageReformat = str => {
+export const mileageReformat = num => {
+  const str = num + '';
   const newArr = str.split(',');
   return Number(newArr.join(''));
 };
