@@ -82,7 +82,6 @@ export const CardInfo = styled(Info)`
   flex-wrap: nowrap;
   flex-direction: column;
   white-space: nowrap;
-  text-overflow: ellipsis;
   & p {
     display: flex;
   }

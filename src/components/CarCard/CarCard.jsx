@@ -48,7 +48,7 @@ const CarCard = ({ carInfo }) => {
   };
 
   const createFirstLine = str => {
-    if (str.length <= 46) {
+    if (str.length <= 45) {
       return (str += ' | Premium');
     } else {
       return str;

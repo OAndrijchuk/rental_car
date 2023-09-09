@@ -84,14 +84,13 @@ const FilterForm = ({ clearList }) => {
       );
     }
 
-    dispatch(resetPagination());
     if (carBrand || maxPrice || values.maxMileage || values.minMileage) {
+      dispatch(resetPagination());
       clearList([]);
       dispatch(setFilteredAdverts(filteredAdverts));
       dispatch(setIsFiltered());
     } else {
       dispatch(clearFilter());
-      dispatch(resetPagination());
     }
   };
 
