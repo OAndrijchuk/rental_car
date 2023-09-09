@@ -18,6 +18,7 @@ export const Button = styled.button`
   }
 `;
 export const GlobalContainer = styled.div`
+  font-family: 'Manrope', sans-serif;
   margin: 0 auto;
   padding: 0 15px;
 `;

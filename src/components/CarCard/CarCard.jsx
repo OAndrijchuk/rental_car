@@ -56,7 +56,7 @@ const CarCard = ({ carInfo }) => {
   };
 
   const createSecondLine = (str, arr) => {
-    const elemMaxLengs = 55 - str.length;
+    const elemMaxLengs = 46 - str.length;
     const text = arr.find(e => e.length <= elemMaxLengs);
     if (text) {
       return (str += ` | ${text}`);
