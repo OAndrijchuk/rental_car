@@ -11,7 +11,6 @@ import { theme } from 'style/theme';
 import { GlobalStyles } from 'style/GlobalStyle';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
   <PersistGate loading={null} persistor={persistor}>
     <BrowserRouter basename="/rental_car">
       <Provider store={store}>
@@ -22,5 +21,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Provider>
     </BrowserRouter>
   </PersistGate>
-  // </React.StrictMode>
 );

@@ -47,8 +47,8 @@ export const RentalCarBtn = styled.a`
   font-size: 14px;
   font-style: normal;
   line-height: 1.43; /* 142.857% */
-  border-radius: 12px;
-  background-color: #3470ff;
+  border-radius: ${({ theme }) => theme.radius};
+  background-color: ${({ theme }) => theme.colors.colorBtn};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ export const RentalCarBtn = styled.a`
   font-weight: 600;
   margin-top: 31px;
   &:hover {
-    background-color: #0b44cd;
+    background-color: ${({ theme }) => theme.colors.hover};
   }
 `;
 export const CloseBtn = styled.button`
@@ -70,11 +70,11 @@ export const CloseBtn = styled.button`
   top: 10px;
   border-radius: 50%;
   & svg {
-    stroke: #121417;
+    stroke: ${({ theme }) => theme.colors.colorText};
     transition: all 250ms ease;
     &:hover {
       transform: scale(1.1);
-      stroke: #0b44cd;
+      stroke: ${({ theme }) => theme.colors.hover};
     }
   }
   @media screen and (min-width: 768px) {
@@ -100,7 +100,7 @@ export const RentalBlockInfo = styled.div`
     background: #f9f9f9;
     & span {
       padding: 0;
-      color: #3470ff;
+      color: ${({ theme }) => theme.colors.colorBtn};
       font-weight: 600;
     }
   }

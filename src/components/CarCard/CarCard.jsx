@@ -2,11 +2,11 @@ import { SpriteSVG } from 'pictures/SVG/SpriteSVG';
 import React from 'react';
 import {
   CardContainer,
+  CardInfo,
   DetailsBtn,
   HeartBtn,
   Img,
   ImportentInfo,
-  Info,
   Li,
 } from './CarCard.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ import {
 } from 'redux/adverts/advertsSlice';
 import { fetchCarDetails } from 'redux/carDetails/operations';
 import { modalOpen } from 'redux/carDetails/carDetailsSlice';
+import { combineInfoProperty } from 'helpers/helpers_func';
 
 const CarCard = ({ carInfo }) => {
   const {
@@ -46,6 +47,33 @@ const CarCard = ({ carInfo }) => {
     }
   };
 
+  const createFirstLine = str => {
+    if (str.length <= 46) {
+      return (str += ' | Premium');
+    } else {
+      return str;
+    }
+  };
+
+  const createSecondLine = (str, arr) => {
+    const elemMaxLengs = 55 - str.length;
+    const text = arr.find(e => e.length <= elemMaxLengs);
+    if (text) {
+      return (str += ` | ${text}`);
+    } else {
+      return str;
+    }
+  };
+
+  const firstLine = createFirstLine(
+    combineInfoProperty(newAdress[1], newAdress[2], rentalCompany)
+  );
+
+  const secondLine = createSecondLine(
+    combineInfoProperty(type, model, id),
+    functionalities
+  );
+
   return (
     <Li>
       <HeartBtn type="button" $isFavorit={isFavorit} onClick={toggleFavorites}>
@@ -70,15 +98,10 @@ const CarCard = ({ carInfo }) => {
           </span>
           <span>{rentalPrice}</span>
         </ImportentInfo>
-        <Info>
-          <span>{newAdress[1]}</span>
-          <span>{newAdress[2]}</span>
-          <span>{rentalCompany}</span>
-          <span>{type}</span>
-          <span>{model}</span>
-          <span>{id}</span>
-          <span>{functionalities[0]}</span>
-        </Info>
+        <CardInfo>
+          <p>{firstLine}</p>
+          <p>{secondLine}</p>
+        </CardInfo>
       </CardContainer>
       <DetailsBtn
         type="button"
@@ -94,29 +117,3 @@ const CarCard = ({ carInfo }) => {
 };
 
 export default CarCard;
-// {
-//         "id": 9582,
-//         "year": 2008,
-//         "make": "Buick",
-//         "model": "Enclave",
-//         "type": "SUV",
-//         "img": "https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/buick_enclave.jpg",
-//         "description": "The Buick Enclave is a stylish and spacious SUV known for its comfortable ride and luxurious features.",
-//         "fuelConsumption": "10.5",
-//         "engineSize": "3.6L V6",
-//         "accessories": [
-//             "Leather seats",
-//             "Panoramic sunroof",
-//             "Premium audio system"
-//         ],
-//         "functionalities": [
-//             "Power liftgate",
-//             "Remote start",
-//             "Blind-spot monitoring"
-//         ],
-//         "rentalPrice": "$40",
-//         "rentalCompany": "Luxury Car Rentals",
-//         "address": "123 Example Street, Kiev, Ukraine",
-//         "rentalConditions": "Minimum age: 25\nValid driver's license\nSecurity deposit required",
-//         "mileage": 5858
-//     },

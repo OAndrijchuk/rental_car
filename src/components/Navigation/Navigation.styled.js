@@ -18,7 +18,7 @@ export const NavCont = styled.nav`
   }
 `;
 export const NavLinkStyled = styled(NavLink)`
-  color: #3470ff;
+  color: ${({ theme }) => theme.colors.colorBtn};
   font-family: 'Manrope-SemiBold';
   font-size: 24px;
   font-style: normal;

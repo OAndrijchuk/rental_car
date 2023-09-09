@@ -5,7 +5,7 @@ import { ErrorMessage, Field, Form } from 'formik';
 
 export const SelectStyled = styled(Select)`
   position: relative;
-  color: #121417;
+  color: ${({ theme }) => theme.colors.colorText};
   z-index: 2;
   font-family: 'Manrope-Medium';
   font-size: 18px;
@@ -90,7 +90,7 @@ export const FildHelpCont = styled.span`
 
 export const FieldStyled = styled(Field)`
   position: relative;
-  color: #121417;
+  color: ${({ theme }) => theme.colors.colorText};
   font-family: 'Manrope-Medium';
   font-size: 18px;
   font-style: normal;
@@ -106,7 +106,7 @@ export const FieldStyled = styled(Field)`
     z-index: 100;
     display: block;
     position: absolute;
-    color: #121417;
+    color: ${({ theme }) => theme.colors.colorText};
     font-family: 'Manrope-Medium';
     font-size: 18px;
     font-style: normal;
@@ -144,7 +144,7 @@ export const InputPrefix = styled.span`
   left: 24px;
   transform: translate(0, -50%);
   pointer-events: none;
-  color: #121417;
+  color: ${({ theme }) => theme.colors.colorText};
   font-size: 18px;
   font-style: normal;
   font-weight: 500;

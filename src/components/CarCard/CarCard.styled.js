@@ -20,9 +20,9 @@ export const HeartBtn = styled.button`
     transition: all 250ms ease;
     &:hover {
       transform: scale(1.1);
-      fill: #3470ff;
+      fill: ${({ theme }) => theme.colors.colorBtn};
       path {
-        stroke: #3470ff;
+        stroke: ${({ theme }) => theme.colors.colorBtn};
       }
     }
   }
@@ -40,25 +40,29 @@ export const ImportentInfo = styled.div`
   display: flex;
   justify-content: space-between;
   padding-right: 8px;
-  color: #121417;
+  color: ${({ theme }) => theme.colors.colorText};
   font-family: 'Manrope-Medium';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.5; /* 150% */
   & .model {
-    color: #3470ff;
+    color: ${({ theme }) => theme.colors.colorBtn};
   }
 `;
 export const Info = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 4px;
   margin-top: 8px;
   color: rgba(18, 20, 23, 0.5);
   font-family: 'Manrope-Regular';
   font-size: 12px;
   font-style: normal;
   line-height: 1.5; /* 150% */
+  & p {
+    display: flex;
+  }
   & span:not(:last-child) {
     display: flex;
     &::after {
@@ -72,6 +76,18 @@ export const Info = styled.div`
     }
   }
 `;
+export const CardInfo = styled(Info)`
+  height: 40px;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  & p {
+    display: flex;
+  }
+`;
+
 export const DetailsBtn = styled(Button)`
   width: 100%;
 `;

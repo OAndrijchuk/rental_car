@@ -31,7 +31,7 @@ export const BurgerMenuBtn = styled.button`
   border-radius: 10px;
   transition: all 250ms ease;
   &:hover {
-    color: #0b44cd;
-    border: 1px solid #0b44cd;
+    color: ${({ theme }) => theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;

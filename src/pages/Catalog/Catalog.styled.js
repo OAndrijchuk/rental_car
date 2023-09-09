@@ -22,7 +22,7 @@ export const Ul = styled.ul`
 export const LoadMoreBtn = styled.button`
   display: block;
   margin: 50px auto;
-  color: #3470ff;
+  color: ${({ theme }) => theme.colors.colorBtn};
   padding: 10px;
   font-family: 'Manrope-Medium';
   font-size: 16px;
@@ -33,6 +33,6 @@ export const LoadMoreBtn = styled.button`
   transition: all 250ms ease;
   &:hover {
     transform: scale(1.2);
-    color: #0b44cd;
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;

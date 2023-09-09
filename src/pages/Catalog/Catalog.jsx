@@ -11,14 +11,22 @@ import {
   resetPagination,
 } from 'redux/paginatonSlice/paginatonSlice';
 import { clearFilter } from 'redux/filteredAdverts/filteredAdvertsSlice';
+import NothingFound from 'components/NothingFound/NothingFound';
+import Loader from 'components/Loader/Loader';
+import {
+  allPaginationSelector,
+  paginationCardsSelector,
+} from 'redux/paginatonSlice/selectors';
 
 function Catalog() {
   const dispatch = useDispatch();
   const { isFiltered, filteredAdverts } = useSelector(filterAllSelector);
   const [elemensCount] = useState(8);
   const [advertsShow, setAdvertsShow] = useState([]);
-  const { currentPage, totalCards } = useSelector(state => state.pagination);
-  const alllAdverts = useSelector(state => state.pagination.paginationCards);
+  const { currentPage, totalCards, isPageLoading } = useSelector(
+    allPaginationSelector
+  );
+  const alllAdverts = useSelector(paginationCardsSelector);
 
   useEffect(() => {
     if (!isFiltered) {
@@ -28,7 +36,6 @@ function Catalog() {
 
   useEffect(() => {
     if (isFiltered) {
-      console.log('filteredAdverts>>>', filteredAdverts);
       setAdvertsShow(prev => [
         ...prev,
         ...filteredAdverts.slice(
@@ -62,11 +69,16 @@ function Catalog() {
     <section>
       <GlobalContainer>
         <FilterForm clearList={setAdvertsShow} />
-        <Ul>
-          {advertsShow.map(car => (
-            <CarCard carInfo={car} key={car.id} />
-          ))}
-        </Ul>
+        {isPageLoading && <Loader />}
+        {advertsShow.length ? (
+          <Ul>
+            {advertsShow.map(car => (
+              <CarCard carInfo={car} key={car.id} />
+            ))}
+          </Ul>
+        ) : (
+          !isPageLoading && <NothingFound />
+        )}
 
         {advertsShow.length !==
           (isFiltered ? filteredAdverts.length : totalCards) && (

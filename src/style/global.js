@@ -6,15 +6,15 @@ export const Button = styled.button`
   font-size: 14px;
   font-style: normal;
   line-height: 1.43; /* 142.857% */
-  border-radius: 12px;
-  background-color: #3470ff;
+  border-radius: ${({ theme }) => theme.radius};
+  background-color: ${({ theme }) => theme.colors.colorBtn};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 12px 50px;
   transition: background-color 250ms ease;
   &:hover {
-    background-color: #0b44cd;
+    background-color: ${({ theme }) => theme.colors.hover};
   }
 `;
 export const GlobalContainer = styled.div`

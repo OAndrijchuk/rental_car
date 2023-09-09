@@ -1,7 +1,7 @@
 import CarDetails from 'components/CarDetails/CarDetails';
 import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Puff } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
@@ -17,7 +17,9 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
 
       {isModalOpen && (
         <Modal>

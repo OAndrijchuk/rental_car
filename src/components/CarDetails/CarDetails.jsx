@@ -13,7 +13,11 @@ import {
   RentalCarBtn,
 } from './CarDetails.styled';
 import { SpriteSVG } from 'pictures/SVG/SpriteSVG';
-import { changeDolar, mileageFormat } from 'helpers/helpers_func';
+import {
+  changeDolar,
+  combineInfoProperty,
+  mileageFormat,
+} from 'helpers/helpers_func';
 import { closeModal } from 'redux/carDetails/carDetailsSlice';
 
 const CarDetails = () => {
@@ -77,17 +81,24 @@ const CarDetails = () => {
         </span>
       </ImportentInfo>
       <Info>
-        <span>{newAdress[1]}</span>
-        <span>{newAdress[2]}</span>
-        <span>Id: {id}</span>
-        <span>Year: {year}</span>
-        <span>Type: {type}</span>
-        <span>Fuel Consumption: {fuelConsumption}</span>
-        <span>Engine Size: {engineSize}</span>
+        <p>
+          <span>{newAdress[1]}</span>
+          <span>{newAdress[2]}</span>
+          <span>Id: {id}</span>
+          <span>Year: {year}</span>
+          <span>Type: {type}</span>
+        </p>
+        <p>
+          <span>Fuel Consumption: {fuelConsumption}</span>
+          <span>Engine Size: {engineSize}</span>
+        </p>
       </Info>
       <DescText>{description}</DescText>
       <BlockName>Accessories and functionalities:</BlockName>
-      <Info>{groupWiev([...accessories, ...functionalities])}</Info>
+      <Info>
+        <p>{combineInfoProperty(...accessories)}</p>
+        <p>{combineInfoProperty(...functionalities)}</p>
+      </Info>
       <RentalBlockName>Rental Conditions:</RentalBlockName>
       <RentalBlockInfo>
         {groupWiev(newRentalConditions)}
@@ -98,7 +109,6 @@ const CarDetails = () => {
           Price: <span> {changeDolar(rentalPrice) + '$'}</span>
         </span>
       </RentalBlockInfo>
-      {/* <RentalCarBtn type="button">Rental car</RentalCarBtn> */}
       <RentalCarBtn href="tel:+380730000000">Rental car</RentalCarBtn>
     </Container>
   );
