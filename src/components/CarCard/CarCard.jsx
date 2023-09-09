@@ -20,7 +20,7 @@ import { modalOpen } from 'redux/carDetails/carDetailsSlice';
 import { combineInfoProperty } from 'helpers/helpers_func';
 
 const CarCard = ({ carInfo }) => {
-  const {
+  let {
     img,
     make,
     id,
@@ -74,6 +74,10 @@ const CarCard = ({ carInfo }) => {
     functionalities
   );
 
+  if (make.length + model.length + year.toString().length > 20) {
+    model = null;
+  }
+
   return (
     <Li>
       <HeartBtn type="button" $isFavorit={isFavorit} onClick={toggleFavorites}>
@@ -90,9 +94,13 @@ const CarCard = ({ carInfo }) => {
           width="274"
           height="268"
         />
+
         <ImportentInfo>
           <span>
-            <span>{make}&#32;</span>
+            <span>
+              {make}
+              {model && ' '}
+            </span>
             <span className="model">{model}</span>
             <span>,&#32;{year}</span>
           </span>
