@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'style/theme';
 import { GlobalStyles } from 'style/GlobalStyle';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate loading={null} persistor={persistor}>
@@ -17,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <App />
+          <ToastContainer autoClose="4000" />
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

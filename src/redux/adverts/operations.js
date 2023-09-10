@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 export const API = axios.create({
@@ -12,6 +13,7 @@ export const fetchAdverts = createAsyncThunk(
       const { data } = await API.get('/adverts');
       return data;
     } catch (error) {
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

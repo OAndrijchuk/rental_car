@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const initialState = {
   filteredAdverts: [],
@@ -27,6 +28,9 @@ const currencySlice = createSlice({
     },
     setFilteredAdverts: (state, { payload }) => {
       state.filteredAdverts = payload;
+      toast.info(`We found ${payload.length} adverts `, {
+        autoClose: 1000,
+      });
     },
     setIsFiltered: (state, { payload }) => {
       state.isFiltered = true;

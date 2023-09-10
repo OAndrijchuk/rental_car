@@ -18,6 +18,7 @@ import {
 import { fetchCarDetails } from 'redux/carDetails/operations';
 import { modalOpen } from 'redux/carDetails/carDetailsSlice';
 import { combineInfoProperty } from 'helpers/helpers_func';
+import { toast } from 'react-toastify';
 
 const CarCard = ({ carInfo }) => {
   let {
@@ -42,8 +43,14 @@ const CarCard = ({ carInfo }) => {
   const toggleFavorites = () => {
     if (isFavorit) {
       dispatch(removeFromFavoritesAdverts(carInfo));
+      toast.warn('Adverts remove from favorites!', {
+        autoClose: 1000,
+      });
     } else {
       dispatch(addToFavoritesAdverts(carInfo));
+      toast.success('Adverts add to favorites', {
+        autoClose: 1000,
+      });
     }
   };
 

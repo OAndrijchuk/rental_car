@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API } from 'redux/adverts/operations';
+import { toast } from 'react-toastify';
 
 export const fetchPage = createAsyncThunk(
   'fetch/paginaton',
@@ -10,6 +11,7 @@ export const fetchPage = createAsyncThunk(
       });
       return data[0];
     } catch (error) {
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
