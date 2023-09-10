@@ -84,7 +84,7 @@ const FilterForm = ({ clearList }) => {
       );
     }
 
-    if (carBrand || maxPrice || values.maxMileage || values.minMileage) {
+    if (carBrand || maxPrice || +values.maxMileage || +values.minMileage) {
       dispatch(resetPagination());
       clearList([]);
       dispatch(setFilteredAdverts(filteredAdverts));
