@@ -74,7 +74,11 @@ const CarCard = ({ carInfo }) => {
     functionalities
   );
 
-  if (make.length + model.length + year.toString().length > 20) {
+  if (
+    make.length + model.length + year.toString().length > 20 ||
+    make.length > 5 ||
+    model.length > 7
+  ) {
     model = null;
   }
 
